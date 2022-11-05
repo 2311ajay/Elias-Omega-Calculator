@@ -19,9 +19,16 @@
               <li>
                 <label for="num">Number to encode:</label>
                 <input style="background-color: blanchedalmond;" type="number" id="inputNumber" name="inputNumber"/><br><br>
-                <button class="rainbow rainbow-5 factor-icon" type="button" name="Calculate" id="Calculate">Calculate</button>
+                <button class="rainbow rainbow-5 factor-icon" type="button" name="Calculate" id="Calculate">Calculate Number</button>
               </li>
             </ol>
+            <ol>
+                <li>
+                  <label for="num">Elias code to number:</label>
+                  <input style="background-color: blanchedalmond;" type="number" id="inputCode" name="inputCode"/><br><br>
+                  <button class="rainbow rainbow-5 factor-icon" type="button" name="CalculateNum" id="CalculateNum">Calculate Code</button>
+                </li>
+              </ol>
         <p id="content"></p>
 
 <py-script>
@@ -96,7 +103,18 @@
         print(n)
         ret = boolListToStr(EliasEncode(n))
         content = document.getElementById("content");
-        content.innerText = str(boolListToStr(EliasEncode(n)))
+        content.innerText = str(ret)
+        #content.innerText = "hello"
+        return ret
+
+    def DecodeToNumber(event):
+        def stToBinList(st):
+            return [True if char == "1" else False for char in st ]
+        n = document.getElementById('inputCode').value
+        bitList = stToBinList(n) 
+        ret = EliasDecode(bitList)
+        content = document.getElementById("content");
+        content.innerText = str(ret)
         #content.innerText = "hello"
         return ret
 
@@ -120,10 +138,13 @@
         # Create a Python proxy for the callback function
 
         el_event = create_proxy(EliasEncodeToBits)
+        c_event = create_proxy(DecodeToNumber)
     
         # Set the listener to the callback
         b = document.getElementById("Calculate")
+        c = document.getElementById("CalculateNum")
         b.addEventListener("click", el_event)
+        c.addEventListener("click", c_event)
 
     main()
    
