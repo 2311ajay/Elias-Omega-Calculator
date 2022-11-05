@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Elias omega encoder</title>
+  
+    <!-- pyscript -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  </head>
+  <body>
+  
+
+        <h1>Very crappy but functional website to calculate <b>Elias omega code</b>. No error checking so beware!</h1>
+            <ol>
+              <li>
+                <label for="num">Number to encode:</label>
+                <input style="background-color: blanchedalmond;" type="number" id="inputNumber" name="inputNumber"/><br><br>
+                <button class="rainbow rainbow-5 factor-icon" type="button" name="Calculate" id="Calculate">Calculate</button>
+              </li>
+            </ol>
+        <p id="content"></p>
+
+<py-script>
+    import asyncio
+    import js
+    from js import document, FileReader
+    from pyodide import create_proxy
+
+    from typing import List
+
+
+    def binStrToDecimal(binStr: List[bool]):
+        pow = len(binStr) - 1
+        dec = 0
+
+        for i in range(len(binStr)):
+            if binStr[i]:
+                dec += 2 ** pow
+            pow -= 1
+
+        return dec
+
+
+    def getBinList(n: int):
+        lst = []
+
+        while n > 0:
+            lst.append(n%2 == 1)
+            n = n >> 1
+
+        return(lst[::-1])
+
+    def EliasEncode(n : int, suffix: str = []):
+        if not n:
+            return suffix
+        ret = getBinList(n) # bin(n)[2:]
+        # ret = [True if x == "1" else False for x in ret]
+        if len(suffix) == 0 and len(ret):
+            return EliasEncode(len(ret) - 1 , ret + suffix)
+        elif len(ret) > 1:
+            ret[0] = False
+            return EliasEncode(len(ret) -1 , ret + suffix)
+        else:
+            ret[0] = False
+            return ret + suffix
+
+    def boolListToStr(boolList: List[bool]):
+        ret = ""
+        for b in boolList:
+            if b:
+                ret += "1"
+            else:
+                ret += "0"
+
+        return ret
+
+
+    def EliasDecode(binString: List[bool], pos = 0, window = 1):
+        portion = binString[pos: pos + window]
+        
+        if not portion[0]:
+            portion[0] = True
+            dec = binStrToDecimal(portion) + 1
+            return EliasDecode(binString, pos + window, dec)
+
+        else:
+            return binStrToDecimal(portion)
+
+
+    def EliasEncodeToBits(event):
+        n = int(document.getElementById('inputNumber').value)
+        print(n)
+        ret = boolListToStr(EliasEncode(n))
+        content = document.getElementById("content");
+        content.innerText = str(boolListToStr(EliasEncode(n)))
+        #content.innerText = "hello"
+        return ret
+
+    # binStr = [0,0,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1]
+
+    # print(EliasDecode(binStr))
+
+    # for i in range(1, 562):
+    #     encoded = EliasEncode(i)
+    #     decoded = EliasDecode(encoded)
+
+    #     assert decoded == i, "Mistake at " + str(i) + " | " + str(decoded)
+
+    #n = 1023
+    # ar = [False, False, True, True, True]
+
+    #print(EliasEncodeToBits(n))
+
+    
+    def main():
+        # Create a Python proxy for the callback function
+
+        el_event = create_proxy(EliasEncodeToBits)
+    
+        # Set the listener to the callback
+        b = document.getElementById("Calculate")
+        b.addEventListener("click", el_event)
+
+    main()
+   
+
+</py-script>
+
+<!-- end py-script and py-env -->
+
+<!-- Output -->
+
+<div id="container">
+
+</div>
+
+
+  </body>
+</html>

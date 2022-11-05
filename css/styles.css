@@ -1,0 +1,214 @@
+#choropleth_map {
+  top: 100px;
+  bottom: 100px;
+  left: 100px;
+  right: 100px;
+  /*height: 1000px;
+	width: 800px;*/
+}
+
+.bgwhite {
+  background-color: #ffffff;
+}
+
+.background_a {
+  background-color: rgb(243, 237, 176);
+}
+
+.background_b {
+  background-color: rgb(233, 224, 247);
+}
+
+.background_c {
+  background-color: rgb(254, 225, 225);
+}
+
+.background_icons {
+  background-color: rgb(209, 188, 243);
+}
+
+.bubble_plot_chart {
+  flex: 4;
+}
+
+.bubble_plot_text {
+  flex: 3;
+}
+
+.generalTextPadding {
+  flex: 1;
+  padding: 10px;
+}
+
+.hints{
+  color: #5d5d5d;;
+}
+
+.headerTint{
+  /* filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(180deg); */
+  background-color: rgb(210, 193, 13);
+}
+
+/* color blocks */
+.midEast {
+  color: #9467bd;
+}
+.ceEurope {
+  color: #1f77b4;
+}
+.cois {
+  color: #ff7f0e;
+}
+.eastAsia {
+  color: #2ca02c;
+}
+.carib {
+  color: #d62728;
+}
+.na {
+  color: #aa837b;
+}
+.sAsia {
+  color: #e377c2;
+}
+.SEA {
+  color: #7f7f7f;
+}
+.subSahar {
+  color: #b9b912;
+}
+.WE {
+  color: #16a0af;
+}
+
+.happy {
+  color: #078707;
+}
+
+.sad {
+  color: #e81010;
+}
+
+.factor-icon {
+  background-color: rgb(128, 128, 128);
+  width: 120px;
+}
+
+.factor-icon:hover {
+  border: 5px solid rgb(72, 2, 184);
+}
+
+.sp {
+  display: none;
+}
+
+#gdpBubbleplot {
+  display: flex;
+}
+
+body {
+  font-size: large;
+  font-family: 'Noto Sans', sans-serif !important;
+  background-color: #ffffff;
+}
+
+.vega-bind-name {
+  padding: 5px;
+}
+
+#flourish-credit {
+  display: none !important;
+}
+
+#headline {
+  font-family: "Roboto", sans-serif;
+  font-size: 4em;
+}
+
+.card {
+  border: 1px solid;
+  box-shadow: 5px 10px #8ea5e0;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+
+select {
+  background-color: rgb(255, 255, 255);
+  padding: 2px;
+}
+
+.pop {
+  font-size: xx-large;
+  text-shadow: 2px 2px 2px rgb(255, 255, 255),
+  2px 2px 1px rgb(255, 255, 255); 
+}
+
+
+body{
+  font-family: 'Nunito', sans-serif;
+}
+
+.a{color: #E7484F}
+.b{color: #F68B1D}
+.c{color: #FCED00}
+.d{color: #009E4F}
+.e{color: #00AAC3}
+.f{color:  #732982}
+
+
+.container{
+  margin-top: 150px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.rainbow{
+  border-radius: 4px;  
+  cursor: pointer; 
+}
+
+
+.rainbow-5:hover{
+  filter: grayscale(0%) !important;
+   background-image:     linear-gradient(
+      to right, 
+      #E7484F,
+      #E7484F 16.65%,
+      #F68B1D 16.65%,
+      #F68B1D 33.3%,
+      #FCED00 33.3%,
+      #FCED00 49.95%,
+      #009E4F 49.95%,
+      #009E4F 66.6%,
+      #00AAC3 66.6%,
+      #00AAC3 83.25%,
+      #732982 83.25%,
+      #732982 100%,
+      #E7484F 100%
+     
+     
+     
+    );
+  animation:slidebg 5s linear infinite;
+  
+}
+
+
+@keyframes slidebg {
+  to {
+    background-position:20vw;
+  }
+}
+
+.follow{
+  margin-top: 40px;
+}
+
+.follow a{
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
